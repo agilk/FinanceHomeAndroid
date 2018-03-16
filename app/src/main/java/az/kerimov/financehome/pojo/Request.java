@@ -25,7 +25,7 @@ public class Request {
     private Integer orientationId;
     private Integer categoryId;
     private Integer subCategoryId;
-    private boolean debt;
+    private Boolean debt;
 
     //for Transactions
     private Double amount;

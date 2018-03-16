@@ -6,31 +6,29 @@
         android:layout_height="match_parent"
         android:orientation="horizontal"
         android:columnCount="1"
-        android:rowCount="3"
+        android:rowCount="4"
         tools:context="az.kerimov.financehome.LoginActivity">
 
 
     <EditText
             android:layout_width="match_parent"
             android:layout_row="0"
-            android:layout_column="0"
-            android:layout_height="47dp" android:id="@+id/editText1" tools:layout_editor_absoluteY="76dp"
-            tools:layout_editor_absoluteX="102dp"/>
+            android:layout_column="0" android:id="@+id/editText1" android:text="agil"/>
 
 
     <EditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:layout_row="1"
             android:layout_column="0"
-            android:inputType="textPassword" android:id="@+id/editText2" tools:layout_editor_absoluteY="122dp"
-            tools:layout_editor_absoluteX="82dp"/>
+            android:inputType="textPassword" android:id="@+id/editText2"/>
     <Button
             android:text="Button"
             android:onClick="login"
             android:layout_row="2"
-            android:layout_column="0"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" tools:layout_editor_absoluteY="165dp"
-            tools:layout_editor_absoluteX="147dp" android:id="@+id/button"/>
+            android:layout_column="0" android:id="@+id/button"/>
+    <TextView
+            android:text=""
+            android:layout_width="match_parent"
+            android:layout_row="3"
+            android:layout_column="0" android:id="@+id/textView" android:layout_height="282dp"/>
 </GridLayout>
