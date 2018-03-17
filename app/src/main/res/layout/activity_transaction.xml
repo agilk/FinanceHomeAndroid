@@ -13,47 +13,56 @@
             android:text="Date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/textView2"/>
-    <DatePicker
+    <EditText
             android:layout_width="wrap_content"
-            android:layout_height="42dp" android:id="@+id/edDate"/>
+            android:layout_height="wrap_content"
+            android:inputType="date"
+            android:ems="10"
+            android:id="@+id/edDate"/>
     <TextView
             android:text="Amount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/textView3"/>
     <EditText
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
             android:ems="10"
-            android:id="@+id/edAmount"/>
+            android:id="@+id/edAmount" android:inputType="numberSigned|numberDecimal"/>
     <TextView
             android:text="Currency"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/textView4"/>
     <Spinner
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:id="@+id/edCurrency"/>
+            android:layout_height="36dp" android:id="@+id/edCurrency"/>
     <TextView
             android:text="Category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/textView7"/>
     <Spinner
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:id="@+id/edCategory"/>
+            android:layout_height="36dp" android:id="@+id/edCategory"/>
     <TextView
             android:text="Sub Category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/textView5"/>
     <Spinner
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:id="@+id/edSubCategory"/>
+            android:layout_height="36dp" android:id="@+id/edSubCategory"/>
     <TextView
             android:text="Wallet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/textView6"/>
     <Spinner
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:id="@+id/edWallet"/>
+            android:layout_height="36dp" android:id="@+id/edWallet"/>
+    <TextView
+            android:text="Other Wallet"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp" android:id="@+id/textView9"/>
+    <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="36dp" android:id="@+id/edWalletOther"/>
     <TextView
             android:text="Notes"
             android:layout_width="wrap_content"
@@ -64,4 +73,9 @@
             android:inputType="textPersonName"
             android:ems="10"
             android:id="@+id/edNotes"/>
+    <TextView
+        android:text="Notes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:id="@+id/textView10"/>
+    <Button android:text="Add" android:onClick="clickAdd"/>
 </GridLayout>

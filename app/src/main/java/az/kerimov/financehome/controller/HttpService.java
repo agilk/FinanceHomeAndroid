@@ -62,6 +62,7 @@ public class HttpService extends AsyncTask<String, String, String>{
                 resp = client.execute(uri);
             }else if (method.equals("put")) {
                 HttpPut uri = new HttpPut(getUrl());
+                uri.addHeader("content-type", "application/json");
                 uri.setEntity(stringEntity);
                 resp = client.execute(uri);
             }

@@ -20,10 +20,11 @@ import java.util.HashMap;
 public class TransactionActivity extends AppCompatActivity {
 
     private String sessionKey;
-    private HashMap<Integer, Integer> spinnerMapCategory;
-    private HashMap<Integer, String> spinnerMapSubCategory;
-    private HashMap<Integer, String> spinnerMapCurrency;
-    private HashMap<Integer, String> spinnerMapWallet;
+    private HashMap<Integer, Integer> spinnerMapCategory = new HashMap<Integer, Integer>();
+    private HashMap<Integer, Integer> spinnerMapSubCategory;
+    private HashMap<Integer, String>  spinnerMapCurrency;
+    private HashMap<Integer, Integer> spinnerMapWallet;
+    private HashMap<Integer, Integer> spinnerMapWalletOther;
 
     //String id = spinnerMap.get(spinner.getSelectedItemPosition());
 
@@ -37,22 +38,20 @@ public class TransactionActivity extends AppCompatActivity {
 
         // Capture the layout's TextView and set the string as its text
         sessionKey = message;
-        EditText textView = (EditText) findViewById(R.id.edNotes);
-        textView.setText(message);
 
         fillSpinners();
 
         Spinner categorySpinner = (Spinner) findViewById(R.id.edCategory);
 
-        final HashMap<Integer, Integer> local = new HashMap<>();
-        local.putAll(spinnerMapCategory);
+        //final HashMap<Integer, Integer> local = new HashMap<>();
+        //local.putAll(spinnerMapCategory);
 
         categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 //(Spinner) selectedItemView.getSelectedItemPosition()
-                Log.w("HHH", "ssds"+id+" --- "+local.get(id));
-                fillSubCategory(local.get(id));
+                //Log.w("HHH", "ssds = "+id+" --- "+spinnerMapCategory.get(id).toString());
+                fillSubCategory((int)id);
             }
 
             @Override
@@ -75,10 +74,41 @@ public class TransactionActivity extends AppCompatActivity {
         FinamanceController.makeRequest(this, "getUserWallets", "post", request);
     }
 
+    public void clickAdd(View view){
+        Request request = new Request();
+
+        EditText edAmount = (EditText) findViewById(R.id.edAmount);
+        Spinner edCategory = (Spinner) findViewById(R.id.edCategory);
+        Spinner edCurrency = (Spinner) findViewById(R.id.edCurrency);
+        Spinner edSubCategory = (Spinner) findViewById(R.id.edSubCategory);
+        Spinner edWallet = (Spinner) findViewById(R.id.edWallet);
+        Spinner edWalletOther = (Spinner) findViewById(R.id.edWalletOther);
+        EditText edNotes = (EditText) findViewById(R.id.edNotes);
+        EditText edDate = (EditText) findViewById(R.id.edDate);
+
+
+
+
+        request.setAmount(Double.parseDouble(String.valueOf(edAmount.getText())));
+        request.setCategoryId(spinnerMapCategory.get(edCategory.getSelectedItemPosition()));
+        request.setSessionKey(sessionKey);
+        request.setCurrencyCode(spinnerMapCurrency.get(edCurrency.getSelectedItemPosition()).toString());
+        request.setSubCategoryId(spinnerMapSubCategory.get(edSubCategory.getSelectedItemPosition()));
+        request.setWalletId(spinnerMapWallet.get(edWallet.getSelectedItemPosition()));
+        if (edWalletOther.getSelectedItemPosition() > 0){
+            request.setWalletIdOther(spinnerMapWalletOther.get(edWalletOther.getSelectedItemPosition()));
+        }
+        request.setNotes(edNotes.getText().toString());
+        request.setDate(edDate.getText().toString()+" 00:00:00");
+        FinamanceController.makeRequest(this, "addTransaction", "put", request);
+    }
+
     public void fillSubCategory(Integer categoryId){
+        Log.w("HHH", "XX: "+spinnerMapCategory.size());
+        Log.w("HHH", "ssds = "+categoryId+" --- "+spinnerMapCategory.get(categoryId).toString());
         Request request = new Request();
         request.setSessionKey(sessionKey);
-        request.setCategoryId(categoryId);
+        request.setCategoryId(spinnerMapCategory.get(categoryId));
 
         FinamanceController.makeRequest(this, "getSubCategories", "post", request);
     }
@@ -94,7 +124,8 @@ public class TransactionActivity extends AppCompatActivity {
                 Spinner spinner = (Spinner) findViewById(R.id.edCategory);
 
                 String[] spinnerArray = new String[response.getData().getCategories().size()];
-                spinnerMapCategory = new HashMap<Integer, Integer>();
+                spinnerMapCategory.clear();
+                //spinnerMapCategory = new HashMap<Integer, Integer>();
                 for (int i = 0; i < response.getData().getCategories().size(); i++) {
                     spinnerMapCategory.put(i, response.getData().getCategories().get(i).getId());
                     spinnerArray[i] = response.getData().getCategories().get(i).getName();
@@ -117,9 +148,9 @@ public class TransactionActivity extends AppCompatActivity {
                 Spinner spinner = (Spinner) findViewById(R.id.edSubCategory);
 
                 String[] spinnerArray = new String[response.getData().getSubCategories().size()];
-                spinnerMapSubCategory = new HashMap<Integer, String>();
+                spinnerMapSubCategory = new HashMap<Integer, Integer>();
                 for (int i = 0; i < response.getData().getSubCategories().size(); i++) {
-                    spinnerMapSubCategory.put(i, response.getData().getSubCategories().get(i).getId().toString());
+                    spinnerMapSubCategory.put(i, response.getData().getSubCategories().get(i).getId());
                     spinnerArray[i] = response.getData().getSubCategories().get(i).getName();
                 }
 
@@ -142,7 +173,7 @@ public class TransactionActivity extends AppCompatActivity {
                 String[] spinnerArray = new String[response.getData().getCurrencies().size()];
                 spinnerMapCurrency = new HashMap<Integer, String>();
                 for (int i = 0; i < response.getData().getCurrencies().size(); i++) {
-                    spinnerMapCurrency.put(i, response.getData().getCurrencies().get(i).getId().toString());
+                    spinnerMapCurrency.put(i, response.getData().getCurrencies().get(i).getCurrency().getCode().toString());
                     spinnerArray[i] = response.getData().getCurrencies().get(i).getCurrency().getShortDescription();
                 }
 
@@ -161,17 +192,35 @@ public class TransactionActivity extends AppCompatActivity {
                 response = gson.fromJson(result, Response.class);
 
                 Spinner spinner = (Spinner) findViewById(R.id.edWallet);
+                Spinner spinnerOther = (Spinner) findViewById(R.id.edWalletOther);
 
                 String[] spinnerArray = new String[response.getData().getWallets().size()];
-                spinnerMapWallet = new HashMap<Integer, String>();
+                spinnerMapWallet = new HashMap<Integer, Integer>();
                 for (int i = 0; i < response.getData().getWallets().size(); i++) {
-                    spinnerMapWallet.put(i, response.getData().getWallets().get(i).getId().toString());
+                    spinnerMapWallet.put(i, response.getData().getWallets().get(i).getId());
                     spinnerArray[i] = response.getData().getWallets().get(i).getCustomName();
                 }
 
                 ArrayAdapter<String> adapter =new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, spinnerArray);
+
+
+                String[] spinnerArrayOther = new String[response.getData().getWallets().size()+1];
+                spinnerMapWalletOther = new HashMap<Integer, Integer>();
+
+                spinnerMapWalletOther.put(0, 0);
+                spinnerArrayOther[0] = "NONE";
+
+                for (int i = 0; i < response.getData().getWallets().size(); i++) {
+                    spinnerMapWalletOther.put(i+1, response.getData().getWallets().get(i).getId());
+                    spinnerArrayOther[i+1] = response.getData().getWallets().get(i).getCustomName();
+                }
+
+                ArrayAdapter<String> adapterOther =new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, spinnerArrayOther);
+
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spinner.setAdapter(adapter);
+                adapterOther.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spinnerOther.setAdapter(adapterOther);
             }catch (Exception e){
 
             }
