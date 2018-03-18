@@ -44,7 +44,7 @@ public class Wallet {
     }
 
     public Double getBalanceAmount() {
-        return balanceAmount;
+        return Math.round(balanceAmount*100.0)/100.0;
     }
 
     public void setBalanceAmount(Double balanceAmount) {
