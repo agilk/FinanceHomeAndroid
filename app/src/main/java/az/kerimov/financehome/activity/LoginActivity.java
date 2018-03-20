@@ -1,4 +1,4 @@
-package az.kerimov.financehome;
+package az.kerimov.financehome.activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import az.kerimov.financehome.R;
 import az.kerimov.financehome.controller.FinamanceController;
 import az.kerimov.financehome.pojo.Request;
 import az.kerimov.financehome.pojo.Response;
@@ -15,7 +16,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public static final String EXTRA_MESSAGE = "az.kerimov.financehome.SESSIONKEY";
 
-    private String httpResult;
+    //private String httpResult;
 
     private void setMessage(String str){
 
@@ -23,14 +24,10 @@ public class LoginActivity extends AppCompatActivity {
         tv.setText(str);
     }
 
-    public String getHttpResult() {
-        return httpResult;
-    }
-
     public void setHttpResult(String httpResult) {
-        this.httpResult = httpResult;
+        //this.httpResult = httpResult;
         Gson gson = new Gson();
-        Response response = new Response();
+        Response response;
         try{
             response = gson.fromJson(httpResult, Response.class);
 

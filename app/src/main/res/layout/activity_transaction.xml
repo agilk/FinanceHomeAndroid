@@ -6,7 +6,7 @@
         android:layout_height="match_parent"
         android:columnCount="3"
         android:rowCount="10"
-        tools:context="az.kerimov.financehome.TransactionActivity">
+        tools:context="az.kerimov.financehome.activity.TransactionActivity">
 
     <TextView
             android:text="Date"
@@ -86,4 +86,6 @@
         android:layout_height="wrap_content" android:id="@+id/textView10"/-->
     <Button android:text="Add"
             android:layout_columnSpan="3" android:onClick="clickAdd"/>
+    <Button android:text="Settings"
+            android:layout_columnSpan="3" android:onClick="clickSettings"/>
 </GridLayout>

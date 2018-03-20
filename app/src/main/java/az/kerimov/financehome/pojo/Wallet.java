@@ -13,6 +13,15 @@ public class Wallet {
 
     private Boolean defaultElement;
 
+    private boolean active;
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
     public Boolean getDefaultElement() {
         return defaultElement;
     }

@@ -7,7 +7,7 @@
         android:orientation="horizontal"
         android:columnCount="1"
         android:rowCount="4"
-        tools:context="az.kerimov.financehome.LoginActivity">
+        tools:context="az.kerimov.financehome.activity.LoginActivity">
 
 
     <EditText

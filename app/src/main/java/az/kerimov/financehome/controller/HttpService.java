@@ -2,16 +2,12 @@ package az.kerimov.financehome.controller;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.widget.TextView;
-import az.kerimov.financehome.LoginActivity;
-import az.kerimov.financehome.TransactionActivity;
+import az.kerimov.financehome.activity.CurrencySettingsActivity;
+import az.kerimov.financehome.activity.LoginActivity;
+import az.kerimov.financehome.activity.TransactionActivity;
 import az.kerimov.financehome.pojo.Request;
-import az.kerimov.financehome.pojo.Response;
 import com.google.gson.Gson;
-import cz.msebera.android.httpclient.Header;
-import cz.msebera.android.httpclient.HttpEntity;
 import cz.msebera.android.httpclient.HttpResponse;
-import cz.msebera.android.httpclient.client.entity.UrlEncodedFormEntity;
 import cz.msebera.android.httpclient.client.methods.HttpPost;
 import cz.msebera.android.httpclient.client.methods.HttpPut;
 import cz.msebera.android.httpclient.entity.StringEntity;
@@ -34,7 +30,7 @@ public class HttpService extends AsyncTask<String, String, String>{
         return BASE_URL+point;
     }
 
-    public HttpService(String method, String point, Request request, Context v) {
+    public HttpService(Context v, String point, String method, Request request) {
         this.method = method;
         this.point = point;
         this.request = request;
@@ -46,7 +42,7 @@ public class HttpService extends AsyncTask<String, String, String>{
 
         try {
             InputStream instr;
-            String res = "";
+            StringBuilder res = new StringBuilder();
 
             DefaultHttpClient client = new DefaultHttpClient();
             HttpResponse resp = null;
@@ -66,16 +62,17 @@ public class HttpService extends AsyncTask<String, String, String>{
                 uri.setEntity(stringEntity);
                 resp = client.execute(uri);
             }
+            assert resp != null;
             instr = resp.getEntity().getContent();
 
             BufferedReader reader;
             reader = new BufferedReader(new InputStreamReader(instr));
-            String line = "";
+            String line;
             while ((line = reader.readLine()) != null) {
-                res += line;
+                res.append(line);
             }
 
-            return res;
+            return res.toString();
 
         } catch (Exception e) {
             return e.getMessage();
@@ -91,6 +88,10 @@ public class HttpService extends AsyncTask<String, String, String>{
         }else
         if (view instanceof TransactionActivity){
             TransactionActivity activity = (TransactionActivity)view;
+            activity.setHttpResult(result, point);
+        }else
+        if (view instanceof CurrencySettingsActivity){
+            CurrencySettingsActivity activity = (CurrencySettingsActivity)view;
             activity.setHttpResult(result, point);
         }
     }
