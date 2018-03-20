@@ -43,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
         }catch(Exception e){
-            setMessage("Error"+e.getMessage());
+            setMessage("Error "+httpResult+"   "+e.getMessage());
         }
     }
 

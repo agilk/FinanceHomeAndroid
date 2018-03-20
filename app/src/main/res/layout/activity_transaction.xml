@@ -4,7 +4,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:columnCount="2"
+        android:columnCount="3"
         android:rowCount="10"
         tools:context="az.kerimov.financehome.TransactionActivity">
 
@@ -18,6 +18,7 @@
             android:layout_height="wrap_content"
             android:inputType="date"
             android:ems="10"
+            android:layout_columnSpan="2"
             android:focusable="false"
             android:id="@+id/edDate"/>
     <TextView
@@ -25,16 +26,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/textView3"/>
     <EditText
-            android:layout_width="match_parent"
+            android:layout_width="142dp"
             android:layout_height="wrap_content"
             android:ems="10"
             android:id="@+id/edAmount" android:inputType="numberSigned|numberDecimal"/>
-    <TextView
+    <!--TextView
             android:text="Currency"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/textView4"/>
+            android:layout_height="wrap_content" android:id="@+id/textView4"/-->
     <Spinner
-            android:layout_width="match_parent"
+            android:layout_width="147dp"
             android:layout_height="36dp" android:id="@+id/edCurrency"/>
     <TextView
             android:text="Category"
@@ -42,6 +43,7 @@
             android:layout_height="wrap_content" android:id="@+id/textView7"/>
     <Spinner
             android:layout_width="match_parent"
+            android:layout_columnSpan="2"
             android:layout_height="36dp" android:id="@+id/edCategory"/>
     <TextView
             android:text="Sub Category"
@@ -49,6 +51,7 @@
             android:layout_height="wrap_content" android:id="@+id/textView5"/>
     <Spinner
             android:layout_width="match_parent"
+            android:layout_columnSpan="2"
             android:layout_height="36dp" android:id="@+id/edSubCategory"/>
     <TextView
             android:text="Wallet"
@@ -56,6 +59,7 @@
             android:layout_height="wrap_content" android:id="@+id/textView6"/>
     <Spinner
             android:layout_width="match_parent"
+            android:layout_columnSpan="2"
             android:layout_height="36dp" android:id="@+id/edWallet"/>
     <TextView
             android:text="Other Wallet"
@@ -63,6 +67,7 @@
             android:layout_height="36dp" android:id="@+id/textView9"/>
     <Spinner
             android:layout_width="match_parent"
+            android:layout_columnSpan="2"
             android:layout_height="36dp" android:id="@+id/edWalletOther"/>
     <TextView
             android:text="Notes"
@@ -72,11 +77,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
+            android:layout_columnSpan="2"
             android:ems="10"
             android:id="@+id/edNotes"/>
-    <TextView
+    <!--TextView
         android:text="Notes"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" android:id="@+id/textView10"/>
-    <Button android:text="Add" android:onClick="clickAdd"/>
+        android:layout_height="wrap_content" android:id="@+id/textView10"/-->
+    <Button android:text="Add"
+            android:layout_columnSpan="3" android:onClick="clickAdd"/>
 </GridLayout>

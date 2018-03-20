@@ -1,5 +1,9 @@
 package az.kerimov.financehome.pojo;
 
+import android.util.Log;
+
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class Data {
@@ -23,10 +27,21 @@ public class Data {
     private List<SubCategory> subCategories;
 
     public List<UserCurrency> getCurrencies() {
+
+
+        Collections.sort(currencies, new Comparator<UserCurrency>() {
+            @Override
+            public int compare(UserCurrency u1, UserCurrency u2) {
+                return u1.getCurrency().getShortDescription().compareTo(u2.getCurrency().getShortDescription());
+
+            }
+        });
+
         return currencies;
     }
 
     public void setCurrencies(List<UserCurrency> currencies) {
+
         this.currencies = currencies;
     }
 
@@ -63,6 +78,16 @@ public class Data {
     }
 
     public List<Wallet> getWallets() {
+
+
+        Collections.sort(wallets, new Comparator<Wallet>() {
+            @Override
+            public int compare(Wallet u1, Wallet u2) {
+                return u1.getCustomName().compareTo(u2.getCustomName());
+
+            }
+        });
+
         return wallets;
     }
 
@@ -115,18 +140,36 @@ public class Data {
     }
 
     public void setCategory(Category category) {
+
         this.category = category;
     }
 
     public List<Category> getCategories() {
+
+        Collections.sort(categories, new Comparator<Category>() {
+            @Override
+            public int compare(Category u1, Category u2) {
+                return u1.getName().compareTo(u2.getName());
+
+            }
+        });
         return categories;
     }
 
     public void setCategories(List<Category> categories) {
+
         this.categories = categories;
     }
 
     public SubCategory getSubCategory() {
+
+        Collections.sort(subCategories, new Comparator<SubCategory>() {
+            @Override
+            public int compare(SubCategory u1, SubCategory u2) {
+                return u1.getName().compareTo(u2.getName());
+
+            }
+        });
         return subCategory;
     }
 

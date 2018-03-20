@@ -11,6 +11,16 @@ public class Wallet {
 
     private Double balanceAmount;
 
+    private Boolean defaultElement;
+
+    public Boolean getDefaultElement() {
+        return defaultElement;
+    }
+
+    public void setDefaultElement(Boolean defaultElement) {
+        this.defaultElement = defaultElement;
+    }
+
     public Integer getId() {
         return id;
     }

@@ -8,6 +8,16 @@ public class UserCurrency {
 
     private Currency currency;
 
+    private Boolean defaultElement;
+
+    public Boolean getDefaultElement() {
+        return defaultElement;
+    }
+
+    public void setDefaultElement(Boolean defaultElement) {
+        this.defaultElement = defaultElement;
+    }
+
     public Integer getId() {
         return id;
     }

@@ -10,12 +10,12 @@ import android.widget.*;
 import az.kerimov.financehome.controller.FinamanceController;
 import az.kerimov.financehome.pojo.Request;
 import az.kerimov.financehome.pojo.Response;
+import az.kerimov.financehome.pojo.UserCurrency;
 import com.google.gson.Gson;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.HashMap;
+import java.util.*;
 
 public class TransactionActivity extends AppCompatActivity {
 
@@ -211,19 +211,28 @@ public class TransactionActivity extends AppCompatActivity {
             try {
                 response = gson.fromJson(result, Response.class);
 
+                int defaultCurrency = 0;
+
                 Spinner spinner = (Spinner) findViewById(R.id.edCurrency);
 
-                String[] spinnerArray = new String[response.getData().getCurrencies().size()];
+                List<UserCurrency> currencies = response.getData().getCurrencies();
+
+                String[] spinnerArray = new String[currencies.size()];
                 spinnerMapCurrency = new HashMap<Integer, String>();
-                for (int i = 0; i < response.getData().getCurrencies().size(); i++) {
-                    spinnerMapCurrency.put(i, response.getData().getCurrencies().get(i).getCurrency().getCode().toString());
-                    spinnerArray[i] = response.getData().getCurrencies().get(i).getCurrency().getShortDescription();
+                for (int i = 0; i < currencies.size(); i++) {
+                    if (currencies.get(i).getDefaultElement()){
+                        defaultCurrency = i;
+                    }
+                    spinnerMapCurrency.put(i, currencies.get(i).getCurrency().getCode().toString());
+                    spinnerArray[i] = currencies.get(i).getCurrency().getShortDescription();
                 }
 
                 ArrayAdapter<String> adapter =new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, spinnerArray);
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spinner.setAdapter(adapter);
+                spinner.setSelection(defaultCurrency);
             }catch (Exception e){
+                e.printStackTrace();
 
             }
         }else
@@ -237,12 +246,18 @@ public class TransactionActivity extends AppCompatActivity {
             try {
                 response = gson.fromJson(result, Response.class);
 
+                int defaultWallet = 0;
+
                 Spinner spinner = (Spinner) findViewById(R.id.edWallet);
                 Spinner spinnerOther = (Spinner) findViewById(R.id.edWalletOther);
 
                 String[] spinnerArray = new String[response.getData().getWallets().size()];
                 spinnerMapWallet = new HashMap<Integer, Integer>();
                 for (int i = 0; i < response.getData().getWallets().size(); i++) {
+
+                    if (response.getData().getWallets().get(i).getDefaultElement()){
+                        defaultWallet = i;
+                    }
                     spinnerMapWallet.put(i, response.getData().getWallets().get(i).getId());
                     spinnerArray[i] = response.getData().getWallets().get(i).getCustomName() + " (" +
                             response.getData().getWallets().get(i).getBalanceAmount() + " "+
@@ -269,6 +284,7 @@ public class TransactionActivity extends AppCompatActivity {
 
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spinner.setAdapter(adapter);
+                spinner.setSelection(defaultWallet);
                 adapterOther.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spinnerOther.setAdapter(adapterOther);
             }catch (Exception e){
