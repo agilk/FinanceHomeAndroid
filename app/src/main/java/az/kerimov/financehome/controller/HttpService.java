@@ -2,9 +2,8 @@ package az.kerimov.financehome.controller;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import az.kerimov.financehome.activity.CurrencySettingsActivity;
-import az.kerimov.financehome.activity.LoginActivity;
-import az.kerimov.financehome.activity.TransactionActivity;
+import az.kerimov.financehome.activity.*;
+import az.kerimov.financehome.pojo.Rate;
 import az.kerimov.financehome.pojo.Request;
 import com.google.gson.Gson;
 import cz.msebera.android.httpclient.HttpResponse;
@@ -92,6 +91,14 @@ public class HttpService extends AsyncTask<String, String, String>{
         }else
         if (view instanceof CurrencySettingsActivity){
             CurrencySettingsActivity activity = (CurrencySettingsActivity)view;
+            activity.setHttpResult(result, point);
+        }else
+        if (view instanceof WalletSettingsActivity){
+            WalletSettingsActivity activity = (WalletSettingsActivity) view;
+            activity.setHttpResult(result, point);
+        }else
+        if (view instanceof RateActivity){
+            RateActivity activity = (RateActivity) view;
             activity.setHttpResult(result, point);
         }
     }

@@ -23,6 +23,10 @@
         </activity>
         <activity android:name=".activity.CurrencySettingsActivity">
         </activity>
+        <activity android:name=".activity.WalletSettingsActivity">
+        </activity>
+        <activity android:name=".activity.RateActivity">
+        </activity>
     </application>
 
 </manifest>

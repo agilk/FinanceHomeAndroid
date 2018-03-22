@@ -8,7 +8,7 @@ import az.kerimov.financehome.R;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    public static final String EXTRA_MESSAGE = "az.kerimov.financehome.SESSIONKEY";
+    private static final String EXTRA_MESSAGE = "az.kerimov.financehome.SESSIONKEY";
 
     private String sessionKey;
 
@@ -19,17 +19,23 @@ public class SettingsActivity extends AppCompatActivity {
 
 
         Intent intent = getIntent();
-        String message = intent.getStringExtra(EXTRA_MESSAGE);
-
-        // Capture the layout's TextView and set the string as its text
-        sessionKey = message;
+        sessionKey = intent.getStringExtra(EXTRA_MESSAGE);
     }
 
+    private void openActivity(Class c){
+        Intent intent = new Intent(this, c);
+        intent.putExtra(EXTRA_MESSAGE, sessionKey);
+        startActivity(intent);
+    }
 
     public void clickCurrencies(View view){
         Intent intent = new Intent(this, CurrencySettingsActivity.class);
         intent.putExtra(EXTRA_MESSAGE, sessionKey);
         startActivity(intent);
+    }
+
+    public void clickWallets(View view){
+        openActivity(WalletSettingsActivity.class);
     }
 
 }

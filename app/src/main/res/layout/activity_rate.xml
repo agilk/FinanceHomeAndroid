@@ -5,15 +5,6 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="az.kerimov.financehome.activity.SettingsActivity">
-
-    <Button
-            android:text="Currencies"
-            android:onClick="clickCurrencies"
-    />
-    <Button
-            android:text="Wallets"
-            android:onClick="clickWallets"
-    />
-
+        tools:context="az.kerimov.financehome.activity.RateActivity">
+<ListView android:id="@+id/listRates" android:layout_height="250dp" android:layout_width="match_parent"/>
 </GridLayout>
