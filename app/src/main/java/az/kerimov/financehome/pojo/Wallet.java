@@ -70,6 +70,10 @@ public class Wallet {
         this.balanceAmount = balanceAmount;
     }
 
+    public String getWalletName(){
+        return customName+" "+currency.getCurrency().getShortDescription();
+    }
+
     @Override
     public String toString() {
         return user.getLogin()+"("+customName+"-["+balanceAmount+" "+currency.getCurrency().getShortDescription()+"]"+")";

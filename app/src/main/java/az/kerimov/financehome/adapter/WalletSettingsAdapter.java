@@ -54,7 +54,7 @@ public class WalletSettingsAdapter extends BaseAdapter{
         TextView balance = (TextView) vi.findViewById(R.id.currentBalance);
 
         code.setText(data.get(i).getCurrency().getCurrency().getShortDescription());
-        name.setText(data.get(i).getCustomName());
+        name.setText(data.get(i).getWalletName());
         balance.setText(data.get(i).getBalanceAmount().toString());
 
 

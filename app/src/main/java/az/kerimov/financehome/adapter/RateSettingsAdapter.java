@@ -49,8 +49,13 @@ public class RateSettingsAdapter extends BaseAdapter{
         TextView date = (TextView) vi.findViewById(R.id.rateDate);
         TextView value = (TextView) vi.findViewById(R.id.rateValue);
 
-        date.setText(data.get(i).getCtime());
-        value.setText(data.get(i).getRate().toString());
+        try {
+            date.setText(data.get(i).getCtime());
+            value.setText(data.get(i).getRate().toString());
+        }catch (NullPointerException ex){
+            date.setText("19700101");
+            value.setText("0");
+        }
 
         return vi;
     }

@@ -83,7 +83,7 @@ public class Data {
         Collections.sort(wallets, new Comparator<Wallet>() {
             @Override
             public int compare(Wallet u1, Wallet u2) {
-                return u1.getCustomName().compareTo(u2.getCustomName());
+                return u1.getWalletName().compareTo(u2.getWalletName());
 
             }
         });

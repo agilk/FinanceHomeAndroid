@@ -249,6 +249,17 @@ public class TransactionActivity extends AppCompatActivity {
             }
             case "addTransaction":
                 fillWallets();
+
+                EditText edAmount = (EditText) findViewById(R.id.edAmount);
+                Spinner edCategory = (Spinner) findViewById(R.id.edCategory);
+                Spinner edSubCategory = (Spinner) findViewById(R.id.edSubCategory);
+                EditText edNotes = (EditText) findViewById(R.id.edNotes);
+
+                edAmount.setText("");
+                edCategory.setSelection(0);
+                edSubCategory.setSelection(0);
+                edNotes.setText("");
+
                 break;
             case "getUserWallets": {
 
@@ -270,7 +281,7 @@ public class TransactionActivity extends AppCompatActivity {
                             defaultWallet = i;
                         }
                         spinnerMapWallet.put(i, response.getData().getWallets().get(i).getId());
-                        spinnerArray[i] = response.getData().getWallets().get(i).getCustomName() + " (" +
+                        spinnerArray[i] = response.getData().getWallets().get(i).getWalletName() + " (" +
                                 response.getData().getWallets().get(i).getBalanceAmount() + " " +
                                 response.getData().getWallets().get(i).getCurrency().getCurrency().getShortDescription() + ")";
                     }
@@ -286,7 +297,7 @@ public class TransactionActivity extends AppCompatActivity {
 
                     for (int i = 0; i < response.getData().getWallets().size(); i++) {
                         spinnerMapWalletOther.put(i + 1, response.getData().getWallets().get(i).getId());
-                        spinnerArrayOther[i + 1] = response.getData().getWallets().get(i).getCustomName() + " (" +
+                        spinnerArrayOther[i + 1] = response.getData().getWallets().get(i).getWalletName() + " (" +
                                 response.getData().getWallets().get(i).getBalanceAmount() + " " +
                                 response.getData().getWallets().get(i).getCurrency().getCurrency().getShortDescription() + ")";
                     }

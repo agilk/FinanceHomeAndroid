@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">FinanceHome</string>
+    <string name="labelCurrency">Currency</string>
+    <string name="labelCustomName">Custom name</string>
+    <string name="labelAdd">Add</string>
 </resources>
