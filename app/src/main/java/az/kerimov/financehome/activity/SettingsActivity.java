@@ -29,9 +29,11 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     public void clickCurrencies(View view){
+        openActivity(CurrencySettingsActivity.class);
+        /*
         Intent intent = new Intent(this, CurrencySettingsActivity.class);
         intent.putExtra(EXTRA_MESSAGE, sessionKey);
-        startActivity(intent);
+        startActivity(intent);*/
     }
 
     public void clickWallets(View view){

@@ -77,7 +77,10 @@ public class CategoryActivity extends AppCompatActivity {
     }
 
     public void clickOpenSubCategories(View view){
-
+        Intent intent = new Intent(this, SubCategoryActivity.class);
+        intent.putExtra(EXTRA_SESSION, sessionKey);
+        intent.putExtra(EXTRA_CATEGORY, categoryId);
+        startActivity(intent);
     }
 
     public void clickAddCategory(View view) {

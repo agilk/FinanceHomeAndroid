@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Финансы</string>
+    <string name="labelCurrency">Валюта</string>
+    <string name="labelCustomName">Свое название</string>
+    <string name="labelAdd">Добавить</string>
+    <string name="labelOrienation">Ориентация</string>
+    <string name="labelDebt">Долг</string>
+    <string name="hintSubCategories">Подкатегории</string>
+    <string name="hintDeleteCategory">Удалить категорию</string>
+    <string name="labelDate">Дата</string>
+    <string name="labelRate">Курс</string>
+    <string name="labelCurrencies">Валюты</string>
+    <string name="labelCategories">Категории</string>
+    <string name="labelWallets">Кошелки</string>
+    <string name="labelAmount">Сумма</string>
+    <string name="labelCategory">Категория</string>
+    <string name="labelSubCategory">Подкатегория</string>
+    <string name="labelWallet">Кошелек</string>
+    <string name="labelOtherWallet">Другой кошелек</string>
+    <string name="labelNotes">Примечания</string>
+    <string name="labelSettings">Настройки</string>
+    <string name="hintDeleteSubCategory">Удалить подкатегорию</string>
+    <string name="hintDebt">Долг</string>
+    <string name="textSetDefault">%s выбрана как валюта по умолчанию</string>
+</resources>

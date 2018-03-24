@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.*;
 import az.kerimov.financehome.R;
 import az.kerimov.financehome.adapter.CurrencySettingsAdapter;
-import az.kerimov.financehome.common.CommonUtils;
 import az.kerimov.financehome.controller.FinamanceController;
 import az.kerimov.financehome.pojo.Currency;
 import az.kerimov.financehome.pojo.Request;
@@ -169,8 +168,8 @@ public class CurrencySettingsActivity extends AppCompatActivity {
                         @Override
                         public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                             TextView xxx = (TextView) findViewById(R.id.xxx);
-                            String text = mapCurrency.get(i).getCurrency().getDescription() + " has been set as your default Currency ";
-                            xxx.setText(text);
+                            String textDefault = getResources().getString(R.string.textSetDefault);
+                            xxx.setText(String.format(textDefault, mapCurrency.get(i).getCurrency().getDescription()));
 
                             Request request = new Request();
                             request.setSessionKey(sessionKey);

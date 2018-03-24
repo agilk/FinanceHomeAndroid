@@ -9,7 +9,7 @@
         tools:context="az.kerimov.financehome.activity.TransactionActivity">
 
     <TextView
-            android:text="Date"
+            android:text="@string/labelDate"
             android:layout_width="wrap_content"
             android:calendarViewShown="true"
             android:layout_height="wrap_content" android:id="@+id/textView2"/>
@@ -22,7 +22,7 @@
             android:focusable="false"
             android:id="@+id/edDate"/>
     <TextView
-            android:text="Amount"
+            android:text="@string/labelAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/textView3"/>
     <EditText
@@ -30,15 +30,11 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:id="@+id/edAmount" android:inputType="numberSigned|numberDecimal"/>
-    <!--TextView
-            android:text="Currency"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/textView4"/-->
     <Spinner
             android:layout_width="147dp"
             android:layout_height="36dp" android:id="@+id/edCurrency"/>
     <TextView
-            android:text="Category"
+            android:text="@string/labelCategory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/textView7"/>
     <Spinner
@@ -46,7 +42,7 @@
             android:layout_columnSpan="2"
             android:layout_height="36dp" android:id="@+id/edCategory"/>
     <TextView
-            android:text="Sub Category"
+            android:text="@string/labelSubCategory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/textView5"/>
     <Spinner
@@ -54,7 +50,7 @@
             android:layout_columnSpan="2"
             android:layout_height="36dp" android:id="@+id/edSubCategory"/>
     <TextView
-            android:text="Wallet"
+            android:text="@string/labelWallet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/textView6"/>
     <Spinner
@@ -62,7 +58,7 @@
             android:layout_columnSpan="2"
             android:layout_height="36dp" android:id="@+id/edWallet"/>
     <TextView
-            android:text="Other Wallet"
+            android:text="@string/labelOtherWallet"
             android:layout_width="wrap_content"
             android:layout_height="36dp" android:id="@+id/textView9"/>
     <Spinner
@@ -70,7 +66,7 @@
             android:layout_columnSpan="2"
             android:layout_height="36dp" android:id="@+id/edWalletOther"/>
     <TextView
-            android:text="Notes"
+            android:text="@string/labelNotes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/textView8"/>
     <EditText
@@ -84,8 +80,8 @@
         android:text="Notes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" android:id="@+id/textView10"/-->
-    <Button android:text="Add"
+    <Button android:text="@string/labelAdd"
             android:layout_columnSpan="3" android:onClick="clickAdd"/>
-    <Button android:text="Settings"
+    <Button android:text="@string/labelSettings"
             android:layout_columnSpan="3" android:onClick="clickSettings"/>
 </GridLayout>

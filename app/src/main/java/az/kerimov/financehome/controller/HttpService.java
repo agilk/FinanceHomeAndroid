@@ -117,6 +117,9 @@ public class HttpService extends AsyncTask<String, String, String> {
         } else if (view instanceof CategoryActivity) {
             CategoryActivity activity = (CategoryActivity) view;
             activity.setHttpResult(result, point);
+        } else if (view instanceof SubCategoryActivity) {
+            SubCategoryActivity activity = (SubCategoryActivity) view;
+            activity.setHttpResult(result, point);
         }
     }
 }

@@ -5,4 +5,21 @@
     <string name="labelAdd">Add</string>
     <string name="labelOrienation">Orientation</string>
     <string name="labelDebt">Debt</string>
+    <string name="hintSubCategories">Sub Categories</string>
+    <string name="hintDeleteCategory">Delete Category</string>
+    <string name="labelDate">Date</string>
+    <string name="labelRate">Rate</string>
+    <string name="labelCurrencies">Currencies</string>
+    <string name="labelCategories">Categories</string>
+    <string name="labelWallets">Wallets</string>
+    <string name="labelAmount">Amount</string>
+    <string name="labelCategory">Category</string>
+    <string name="labelSubCategory">Sub Category</string>
+    <string name="labelWallet">Wallet</string>
+    <string name="labelOtherWallet">Other Wallet</string>
+    <string name="labelNotes">Notes</string>
+    <string name="labelSettings">Settings</string>
+    <string name="hintDeleteSubCategory">Delete Sub Category</string>
+    <string name="hintDebt">Debt</string>
+    <string name="textSetDefault">%s has been set as your default currency</string>
 </resources>

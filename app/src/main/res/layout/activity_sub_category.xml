@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:columnCount="2"
+        tools:context="az.kerimov.financehome.activity.SubCategoryActivity">
+    <LinearLayout android:orientation="horizontal" android:layout_columnSpan="2"
+                  android:layout_height="wrap_content" android:layout_width="match_parent"
+                  android:id="@+id/panelSubCategoryTools" android:layout_gravity="right"
+                  android:visibility="invisible">
+        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/ic_remove"
+                   android:onClick="clickDeleteSubCategory"/>
+
+    </LinearLayout>
+    <ListView android:layout_columnSpan="2" android:layout_height="150dp" android:layout_width="match_parent"
+    android:id="@+id/listSubCategories"></ListView>
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+    android:text="@string/labelCustomName"/>
+    <EditText android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:id="@+id/edSubCategoryName"/>
+    <Button android:layout_columnSpan="2" android:layout_width="match_parent"
+    android:layout_height="wrap_content" android:text="@string/labelAdd" android:onClick="clickAddSubCategory"/>
+
+</GridLayout>
