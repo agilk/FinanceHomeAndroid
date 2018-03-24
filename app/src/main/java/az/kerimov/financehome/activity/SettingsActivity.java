@@ -38,4 +38,8 @@ public class SettingsActivity extends AppCompatActivity {
         openActivity(WalletSettingsActivity.class);
     }
 
+    public void clickCategories(View view){
+        openActivity(CategoryActivity.class);
+    }
+
 }

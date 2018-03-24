@@ -55,7 +55,7 @@ public class WalletSettingsAdapter extends BaseAdapter{
 
         code.setText(data.get(i).getCurrency().getCurrency().getShortDescription());
         name.setText(data.get(i).getWalletName());
-        balance.setText(data.get(i).getBalanceAmount().toString());
+        balance.setText(String.format("%.2f ",data.get(i).getBalanceAmount()));
 
 
         if (data.get(i).getDefaultElement()){

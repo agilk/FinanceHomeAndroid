@@ -12,6 +12,10 @@
             android:onClick="clickCurrencies"
     />
     <Button
+            android:text="Categories"
+            android:onClick="clickCategories"
+    />
+    <Button
             android:text="Wallets"
             android:onClick="clickWallets"
     />

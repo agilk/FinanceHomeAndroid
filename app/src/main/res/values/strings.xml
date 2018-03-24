@@ -3,4 +3,6 @@
     <string name="labelCurrency">Currency</string>
     <string name="labelCustomName">Custom name</string>
     <string name="labelAdd">Add</string>
+    <string name="labelOrienation">Orientation</string>
+    <string name="labelDebt">Debt</string>
 </resources>
