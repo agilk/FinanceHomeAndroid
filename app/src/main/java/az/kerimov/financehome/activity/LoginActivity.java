@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import az.kerimov.financehome.R;
+import az.kerimov.financehome.common.CommonUtils;
 import az.kerimov.financehome.controller.FinamanceController;
 import az.kerimov.financehome.pojo.Request;
 import az.kerimov.financehome.pojo.Response;
@@ -51,12 +52,14 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void login(View view){
-        EditText login = (EditText) findViewById(R.id.editText1);
-        EditText password = (EditText) findViewById(R.id.editText2);
+        EditText login = (EditText) findViewById(R.id.edLogin);
+        EditText password = (EditText) findViewById(R.id.edPassword);
+
+        String passHash = CommonUtils.encryptPassword(login.getText().toString().toLowerCase()+password.getText().toString());
 
         Request request = new Request();
-        request.setLogin(login.getText().toString());
-        request.setPassword(password.getText().toString());
+        request.setLogin(login.getText().toString().toLowerCase());
+        request.setPassword(passHash);
 
         FinamanceController.makeRequest(this, "login", "post", request);
 
