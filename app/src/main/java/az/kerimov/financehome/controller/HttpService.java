@@ -63,18 +63,18 @@ public class HttpService extends AsyncTask<String, String, String> {
 
             if (method.equals("post")) {
                 HttpPost uri = new HttpPost(getUrl());
-                uri.addHeader("content-type", "application/json");
+                uri.addHeader("content-type", "application/json;charset=UTF-8");
                 uri.setEntity(stringEntity);
                 resp = client.execute(uri);
             } else if (method.equals("put")) {
                 HttpPut uri = new HttpPut(getUrl());
-                uri.addHeader("content-type", "application/json");
+                uri.addHeader("content-type", "application/json;charset=UTF-8");
                 uri.setEntity(stringEntity);
                 resp = client.execute(uri);
 
             } else if (method.equals("delete")) {
                 HttDelete uri = new HttDelete(getUrl());
-                uri.addHeader("content-type", "application/json");
+                uri.addHeader("content-type", "application/json;charset=UTF-8");
                 uri.setEntity(stringEntity);
                 resp = client.execute(uri);
             }
