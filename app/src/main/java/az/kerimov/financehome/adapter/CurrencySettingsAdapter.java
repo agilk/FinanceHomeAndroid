@@ -55,6 +55,10 @@ public class CurrencySettingsAdapter extends BaseAdapter{
             code.setTypeface(null, Typeface.BOLD);
             descr.setTypeface(null, Typeface.BOLD);
             code.setTextColor(Color.parseColor("#800000"));
+        }else{
+            code.setTypeface(null, Typeface.NORMAL);
+            descr.setTypeface(null, Typeface.NORMAL);
+            code.setTextColor(Color.parseColor("#000000"));
         }
         return vi;
     }

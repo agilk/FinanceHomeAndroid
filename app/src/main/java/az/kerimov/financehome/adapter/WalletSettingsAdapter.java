@@ -58,11 +58,19 @@ public class WalletSettingsAdapter extends BaseAdapter{
         balance.setText(String.format("%.2f ",data.get(i).getBalanceAmount()));
 
 
+        int typeFace;
+        int color;
+
         if (data.get(i).getDefaultElement()){
-            code.setTypeface(null, Typeface.BOLD);
-            name.setTypeface(null, Typeface.BOLD);
-            name.setTextColor(Color.parseColor("#800000"));
+            typeFace = Typeface.BOLD;
+            color = Color.parseColor("#800000");
+        }else{
+            typeFace = Typeface.NORMAL;
+            color = Color.parseColor("#000000");
         }
+        code.setTypeface(null, typeFace);
+        name.setTypeface(null, typeFace);
+        name.setTextColor(color);
 
         return vi;
     }

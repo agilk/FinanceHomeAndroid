@@ -2,8 +2,8 @@ package az.kerimov.financehome.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.*;
 import az.kerimov.financehome.R;
@@ -22,9 +22,11 @@ import static az.kerimov.financehome.common.CommonUtils.fillMap;
 
 public class WalletSettingsActivity extends AppCompatActivity {
 
-    private static final String EXTRA_MESSAGE = "az.kerimov.financehome.SESSIONKEY";
+    private static final String EXTRA_SESSIONKEY = "az.kerimov.financehome.SESSIONKEY";
+    private static final String EXTRA_ACTIVE = "az.kerimov.financehome.ACTIVE";
 
     private String sessionKey;
+    private Boolean active;
 
 
     private Context context;
@@ -32,6 +34,7 @@ public class WalletSettingsActivity extends AppCompatActivity {
     private ListView listWallets;
     private Spinner edCurrency;
     private EditText edCustomName;
+    private GridLayout layAddWallet;
 
 
     private HashMap<Integer, Wallet> mapWallets;
@@ -45,17 +48,27 @@ public class WalletSettingsActivity extends AppCompatActivity {
         context = this;
 
         Intent intent = getIntent();
-        sessionKey = intent.getStringExtra(EXTRA_MESSAGE);
+        sessionKey = intent.getStringExtra(EXTRA_SESSIONKEY);
+        active = intent.getBooleanExtra(EXTRA_ACTIVE, true);
 
         listWallets = (ListView) findViewById(R.id.listWallets);
         edCurrency = (Spinner) findViewById(R.id.edUserCurrency);
         edCustomName = (EditText) findViewById(R.id.edCustomName);
+        layAddWallet = (GridLayout) findViewById(R.id.layAddWallet);
+
+        if (!active){
+            layAddWallet.setVisibility(View.INVISIBLE);
+        }
 
         Request request = new Request();
         request.setSessionKey(sessionKey);
 
-        FinamanceController.makeRequest(this, "getUserWallets", "post", request);
-        FinamanceController.makeRequest(this, "getUserCurrencies", "post", request);
+        if (active) {
+            FinamanceController.makeRequest(this, "getUserWallets", "post", request);
+            FinamanceController.makeRequest(this, "getUserCurrencies", "post", request);
+        }else{
+            FinamanceController.makeRequest(this, "getUserInactiveWallets", "post", request);
+        }
     }
 
     public void clickAddWallet(View view){
@@ -73,7 +86,7 @@ public class WalletSettingsActivity extends AppCompatActivity {
 
         switch (point) {
             case "getUserWallets":
-            case "setDefaultWallet":{
+            case "getUserInactiveWallets":{
 
                 Gson gson = new Gson();
                 Response response;
@@ -95,8 +108,12 @@ public class WalletSettingsActivity extends AppCompatActivity {
                             request.setSessionKey(sessionKey);
                             request.setWalletId(mapWallets.get(i).getId());
 
-                            FinamanceController.makeRequest(context, "setDefaultWallet", "post", request);
+                            String serviceName = "setDefaultWallet";
+                            if (!active) {
+                                serviceName = "activateWallet";
+                            }
 
+                            FinamanceController.makeRequest(context, serviceName, "post", request);
                             return false;
                         }
                     });
@@ -105,6 +122,16 @@ public class WalletSettingsActivity extends AppCompatActivity {
                 }
 
                 break;
+            }
+            case "activateWallet":{
+                Request request = new Request();
+                request.setSessionKey(sessionKey);
+                FinamanceController.makeRequest(this, "getUserInactiveWallets", "post", request);
+            }
+            case "setDefaultWallet":{
+                Request request = new Request();
+                request.setSessionKey(sessionKey);
+                FinamanceController.makeRequest(this, "getUserWallets", "post", request);
             }
             case "getUserCurrencies":{
                 Gson gson = new Gson();

@@ -8,7 +8,7 @@
         tools:context="az.kerimov.financehome.activity.WalletSettingsActivity">
 <ListView
 android:id="@+id/listWallets" android:layout_width="match_parent" android:layout_height="150dp"/>
-    <GridLayout android:columnCount="2" android:layout_width="match_parent" android:layout_height="wrap_content">
+    <GridLayout android:id="@+id/layAddWallet" android:columnCount="2" android:layout_width="match_parent" android:layout_height="wrap_content">
         <TextView android:text="@string/labelCurrency" android:layout_height="wrap_content" android:layout_width="wrap_content"/>
         <Spinner android:layout_width="match_parent" android:layout_height="match_parent" android:id="@+id/edUserCurrency"/>
         <TextView android:text="@string/labelCustomName" android:layout_height="wrap_content" android:layout_width="wrap_content"/>

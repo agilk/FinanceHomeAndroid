@@ -19,5 +19,9 @@
             android:text="@string/labelWallets"
             android:onClick="clickWallets"
     />
+    <Button
+            android:text="@string/labelInactiveWallets"
+            android:onClick="clickInactiveWallets"
+    />
 
 </GridLayout>

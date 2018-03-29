@@ -15,6 +15,7 @@ import cz.msebera.android.httpclient.impl.client.DefaultHttpClient;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 
 public class HttpService extends AsyncTask<String, String, String> {
 
@@ -59,7 +60,7 @@ public class HttpService extends AsyncTask<String, String, String> {
 
             Gson gson = new Gson();
 
-            StringEntity stringEntity = new StringEntity(gson.toJson(request));
+            StringEntity stringEntity = new StringEntity(gson.toJson(request), StandardCharsets.UTF_8);
 
             if (method.equals("post")) {
                 HttpPost uri = new HttpPost(getUrl());

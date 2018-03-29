@@ -23,4 +23,5 @@
     <string name="hintDebt">Debt</string>
     <string name="textSetDefault">%s has been set as your default currency</string>
     <string name="labelLogin">Login</string>
+    <string name="labelInactiveWallets">Inactive Wallets</string>
 </resources>

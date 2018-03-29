@@ -23,4 +23,5 @@
     <string name="hintDebt">Долг</string>
     <string name="textSetDefault">%s выбрана как валюта по умолчанию</string>
     <string name="labelLogin">Войти</string>
+    <string name="labelInactiveWallets">Скрытые кошелки</string>
 </resources>
