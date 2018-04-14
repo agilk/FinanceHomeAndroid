@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.*;
 import az.kerimov.financehome.R;
+import az.kerimov.financehome.adapter.LastTransactionsAdapter;
 import az.kerimov.financehome.controller.FinamanceController;
 import az.kerimov.financehome.pojo.Request;
 import az.kerimov.financehome.pojo.Response;
@@ -115,6 +116,7 @@ public class TransactionActivity extends AppCompatActivity {
         request.setSessionKey(sessionKey);
 
         FinamanceController.makeRequest(this, "getUserWallets", "post", request);
+        FinamanceController.makeRequest(this, "getLastTransactions", "post", request);
     }
 
     public void clickAdd(View view){
@@ -165,6 +167,22 @@ public class TransactionActivity extends AppCompatActivity {
     @SuppressLint("UseSparseArrays")
     public void setHttpResult(String result, String point){
         switch (point) {
+            case "getLastTransactions":{
+                Gson gson = new Gson();
+                Response response;
+                try {
+                    response = gson.fromJson(result, Response.class);
+
+                    ListView listTransactions = (ListView) findViewById(R.id.lvLastTransactions);
+
+                    listTransactions.setAdapter(new LastTransactionsAdapter(this, response.getData().getTransactions()));
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+
+                }
+                break;
+            }
             case "getCategories": {
 
                 Gson gson = new Gson();
@@ -182,7 +200,7 @@ public class TransactionActivity extends AppCompatActivity {
                         spinnerArray[i] = response.getData().getCategories().get(i).getName();
                     }
 
-                    ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, spinnerArray);
+                    ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.fn_item_spinner, spinnerArray);
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     spinner.setAdapter(adapter);
                 } catch (Exception e) {
@@ -207,7 +225,7 @@ public class TransactionActivity extends AppCompatActivity {
                         spinnerArray[i] = response.getData().getSubCategories().get(i).getName();
                     }
 
-                    ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, spinnerArray);
+                    ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.fn_item_spinner, spinnerArray);
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     spinner.setAdapter(adapter);
                 } catch (Exception e) {
@@ -238,7 +256,7 @@ public class TransactionActivity extends AppCompatActivity {
                         spinnerArray[i] = currencies.get(i).getCurrency().getShortDescription();
                     }
 
-                    ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, spinnerArray);
+                    ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.fn_item_spinner, spinnerArray);
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     spinner.setAdapter(adapter);
                     spinner.setSelection(defaultCurrency);
@@ -286,7 +304,7 @@ public class TransactionActivity extends AppCompatActivity {
                                 response.getData().getWallets().get(i).getCurrency().getCurrency().getShortDescription() + ")";
                     }
 
-                    ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, spinnerArray);
+                    ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.fn_item_spinner, spinnerArray);
 
 
                     String[] spinnerArrayOther = new String[response.getData().getWallets().size() + 1];
@@ -302,7 +320,7 @@ public class TransactionActivity extends AppCompatActivity {
                                 response.getData().getWallets().get(i).getCurrency().getCurrency().getShortDescription() + ")";
                     }
 
-                    ArrayAdapter<String> adapterOther = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, spinnerArrayOther);
+                    ArrayAdapter<String> adapterOther = new ArrayAdapter<>(this, R.layout.fn_item_spinner, spinnerArrayOther);
 
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     spinner.setAdapter(adapter);
